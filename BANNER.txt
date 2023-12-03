@@ -10,6 +10,6 @@
     Vue and TypeScript. The original code is converted to raw JavaScript
     in a build process. To view the original source code, visit
 
-        https://gitlab.wikimedia.org/chlod/userscripts-template-codex
+        https://github.com/ChlodAlejandro/vite-mediawiki-userscript-template
 
 ------------------------------------------------------------------------
