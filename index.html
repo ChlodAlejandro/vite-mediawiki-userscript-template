@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Userscript development</title>
+        <style>
+            /* Partially derived from doc.wikimedia.org's styles */
+            body {
+                font-family: -apple-system, "BlinkMacSystemFont", "Segoe UI", "Roboto",
+                    "Inter", "Helvetica", "Arial", sans-serif;
+                margin: 64px;
+                max-width: 512px;
+            }
+
+            header {
+                margin-bottom: 32px;
+            }
+
+            code, #code {
+                padding: 2px 4px;
+                border-radius: 8px;
+            }
+
+            #code {
+                position: relative;
+                padding: 1em;
+                color: white;
+                background-color: #111;
+            }
+
+            #code > * {
+                font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco,
+                Consolas, "Liberation Mono", "Courier New", monospace;
+            }
+
+            #code #highlighted {
+                user-select: none;
+                pointer-events: none;
+            }
+
+            #code #highlighted > pre {
+                display: inline;
+                font-family: inherit;
+                font-size: inherit;
+            }
+
+            #code #raw {
+                margin: 0;
+                position: absolute;
+                top: 1em;
+                left: 1em;
+                color: transparent;
+            }
+
+            .keyword {
+                color: #a538ff;
+                font-style: italic;
+            }
+
+            .function {
+                color: #ffdc00;
+            }
+
+            .string {
+                color: #fd823a;
+            }
+
+            .variable {
+                color: #8BE9FD;
+            }
+
+            .variable.language {
+                color: #6956da;
+                font-style: italic;
+            }
+
+            .property {
+                color: #7175ff;
+            }
+
+            .comment {
+                color: #808080;
+            }
+
+            @media screen and (prefers-color-scheme: dark) {
+                body {
+                    background-color: #111;
+                    color: #fff;
+                }
+
+                code, #code {
+                    background-color: rgba(255, 255, 255, 0.05);
+                    border-radius: 8px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <img id="favicon" src="https://upload.wikimedia.org/wikipedia/commons/4/41/Wikitech-2021-blue-icon.svg" alt="Wikitech logo">
+        </header>
+        <main>
+            <p>
+                Your userscript is now ready for use.
+            </p>
+            <p>
+                To load the development userscript, add the following to your <code>common.js</code>:
+            </p>
+            <div id="code">
+                <pre id="raw"></pre>
+                <div id="highlighted" role="presentation" aria-hidden="true">
+                    <span class="keyword">function</span>
+                    <span class="function">loadModule</span>(
+                    <span class="params">src</span>
+                    ) {
+                    <br/><pre>   </pre>
+                    <span class="keyword">var</span>
+                    e =
+                    <span class="variable language">document</span>.<span class="function">createElement</span>(
+                    <span class="string">'script'</span>
+                    );
+                    <br/><pre>   </pre>
+                    e.<span class="function">setAttribute</span>(
+                    <span class="string">'type'</span>,
+                    <span class="string">'module'</span>
+                    );
+                    <br/><pre>   </pre>
+                    e.<span class="function">setAttribute</span>(
+                    <span class="string">'src'</span>,
+                    src
+                    );
+                    <br/><pre>   </pre>
+                    <span class="variable language">document</span>.<span class="property">head</span>.<span class="function">appendChild</span>(
+                    e
+                    );<br/>
+                    }<br/><br/>
+                    <span class="comment">// Userscript development</span><br/>
+                    <span class="function">loadModule</span>(
+                    <span id="scriptVite" class="string">'http://localhost:5173/@vite/client'</span>
+                    );<br/>
+                    <span class="function">loadModule</span>(
+                    <span id="scriptMain" class="string">'http://localhost:5173/src/main.ts'</span>
+                    );
+                </div>
+            </div>
+            <script>
+                document.getElementById("scriptVite")
+                    .innerText = `'${new URL("/@vite/client", window.location.href).toString()}'`;
+                document.getElementById("scriptMain")
+                    .innerText = `'${new URL("/src/main.ts", window.location.href).toString()}'`;
+
+                document.querySelector("#code #raw").innerText =
+                    document.querySelector("#code #highlighted").innerText;
+            </script>
+        </main>
+    </body>
+</html>

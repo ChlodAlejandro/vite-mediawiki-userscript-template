@@ -1,0 +1,15 @@
+------------------------------------------------------------------------
+
+    CODEX TEST USERSCRIPT
+
+    I can't think of anything to put as a description for now.
+
+------------------------------------------------------------------------
+
+    NOTE TO USERS AND DEBUGGERS: This userscript is originally written in
+    Vue and TypeScript. The original code is converted to raw JavaScript
+    in a build process. To view the original source code, visit
+
+        https://gitlab.wikimedia.org/chlod/userscripts-template-codex
+
+------------------------------------------------------------------------
